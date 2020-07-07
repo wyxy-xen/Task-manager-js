@@ -1,0 +1,29 @@
+CREATE TABLE Account(
+	UserId INT PRIMARY KEY IDENTITY,
+	UserName VARCHAR(40),
+	UserEmail VARCHAR(20) NOT NULL,
+	UserPwd VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Category(
+	CategoryId INT PRIMARY KEY IDENTITY,
+	Category VARCHAR(20)
+);
+
+
+CREATE TABLE Task(
+	Taskid INT PRIMARY KEY IDENTITY,
+	TaskTitle VARCHAR(20) NOT NULL,
+	CreationDate DATE,
+	Startdate DATE,
+	ExpDeadline DATE NOT NULL,
+	RealEnd DATE,
+	Progress INT NOT NULL,
+	Status VARCHAR(10),
+	Daysleft INT,
+	CategoryId INT,
+	UserId INT NOT NULL,
+	FOREIGN KEY(CategoryId) REFERENCES Category(CategoryId) ON DELETE SET NULL,
+	FOREIGN KEY(UserId) REFERENCES Account(UserId) ON DELETE SET NULL
+);
+
